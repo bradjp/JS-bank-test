@@ -4,11 +4,14 @@ function deposit(account, amount){
   }
 
   var new_balance = account.balance += amount
+  record_transaction(account, amount, new_balance)
+  new_balance
+}
 
+function record_transaction(account, amount, new_balance) {
   var today = (new Date).toLocaleDateString()
   var transaction = {date: today, deposit: amount, withdrawal: 0, balance: new_balance }
   account.transaction_history.push(transaction)
-  new_balance
 }
 
 function withdraw(account, amount) {

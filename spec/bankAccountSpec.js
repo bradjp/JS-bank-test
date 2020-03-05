@@ -13,7 +13,7 @@ describe('Bank Account', function() {
       expect(ac.getBalance()).toEqual(0);
     });
   });
-  describe('Transaction history', function(){
+  describe('Account history', function(){
     it('Records a deposit', function(){
       var today = (new Date).toLocaleString().slice(0,10)
       deposit(ac, 10)
