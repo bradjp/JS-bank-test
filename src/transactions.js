@@ -16,18 +16,33 @@ function withdraw(account, amount) {
   recordWithdrawal(amount, new_balance, account);
 }
 
-function recordWithdrawal(amount, new_balance, account) {
-  var today = (new Date).toLocaleDateString();
-  var transaction = { date: today, deposit: 0, withdrawal: amount, balance: new_balance };
+function recordDeposit(account, amount, new_balance) {
+  var today = (new Date).toLocaleDateString()
+  var amount = transactionToString(amount)
+  var new_balance = transactionToString(new_balance)
+
+  var transaction = {date: today, deposit: amount, withdrawal: '0.00', balance: new_balance }
   recordTransaction(account, transaction)
 }
 
-function recordDeposit(account, amount, new_balance) {
-  var today = (new Date).toLocaleDateString()
-  var transaction = {date: today, deposit: amount, withdrawal: 0, balance: new_balance }
+function recordWithdrawal(amount, new_balance, account) {
+  var today = (new Date).toLocaleDateString();
+  var amount = transactionToString(amount)
+  var new_balance = transactionToString(new_balance)
+  var transaction = { date: today, deposit: '0.00', withdrawal: amount, balance: new_balance };
   recordTransaction(account, transaction)
 }
 
 function recordTransaction(account, transaction) {
-  account.transaction_history.push(transaction);
+  account.transactionHistory.push(transaction);
+}
+
+function transactionToString(amount) {
+  if (amount % 1 === 0) {
+    return amount.toString() + '.00'
+  } else if ((amount*10) % 1 === 0) {
+    return amount.toString() + '0'
+  } else {
+    return amount
+  }
 }

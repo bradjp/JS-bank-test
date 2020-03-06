@@ -1,6 +1,6 @@
 var Account = function() {
   this.balance = 0
-  this.transaction_history = []
+  this.transactionHistory = []
 }
 
 Account.prototype.getBalance = function() {
