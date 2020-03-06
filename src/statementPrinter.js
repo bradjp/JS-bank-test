@@ -7,7 +7,8 @@ function printStatement(account) {
 
 function getStatementBody(account) {
   var pad = ' || '
-  var stringArray = account.transactionHistory.map( entry => 
+  var reverseTransactions = account.transactionHistory.reverse()
+  var stringArray = reverseTransactions.map( entry => 
     (entry['date'] + pad + entry['deposit'] + pad + entry['withdrawal'] + pad + entry['balance']).replace('  ', ' '))
   return stringArray.join("\n")
 }
